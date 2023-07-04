@@ -18,6 +18,7 @@ def canUnlockAll(boxes):
             opened_boxes[i] = True
 
         if opened is False:
+            opened_boxes[i] = False
             if i in unlocked_keys:
                 opened = True
                 unlocked_keys += boxes[i]
