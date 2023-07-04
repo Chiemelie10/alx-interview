@@ -12,6 +12,9 @@ def canUnlockAll(boxes):
     opened_boxes = {}
     opened = True
 
+    if len(boxes) == 0:
+        return False
+
     for i in range(len(boxes)):
         if i == 0:
             unlocked_keys += boxes[i]
