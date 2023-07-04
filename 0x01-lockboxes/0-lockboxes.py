@@ -23,17 +23,17 @@ def canUnlockAll(boxes):
                 opened = True
                 unlocked_keys += boxes[i]
                 opened_boxes[i] = True
-                unlocked_keys.remove(i)
+                # unlocked_keys.remove(i)
 
                 for key, value in opened_boxes.items():
                     if key in unlocked_keys and value is False:
                         unlocked_keys += boxes[key]
                         opened_boxes[key] = True
-                        unlocked_keys.remove(key)
+                        # unlocked_keys.remove(key)
         elif i != 0 and i in unlocked_keys:
             unlocked_keys += boxes[i]
             opened_boxes[i] = True
-            unlocked_keys.remove(i)
+            # unlocked_keys.remove(i)
         elif i != 0 and i not in unlocked_keys:
             opened = False
             opened_boxes[i] = False
