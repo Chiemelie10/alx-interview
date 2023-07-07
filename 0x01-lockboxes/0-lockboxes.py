@@ -1,47 +1,32 @@
 #!/usr/bin/python3
-"""This module defines a function that opens locked boxes."""
+"""This module defines the function canUnlockAll."""
 
 
 def canUnlockAll(boxes):
     """
-    Returns True if all boxes can be opened. Otherwise, returns
-    false.
+    - This function returns True if the accessible keys in each
+    box can unlock all the boxes.
+    - It returns false if one or more boxes cannot be unlocked.
+    - The function parameter 'boxes' is a list of list.
+    - The box at the index of zero (0) is unlocked.
+    - All keys will be postive integers
+    - A key with the same number as a box (box index) opens that box.
     """
 
-    unlocked_keys = []
-    opened_boxes = {}
-    opened = True
+    if len(boxes) <= 1:
+        return True
 
-    if len(boxes) == 0:
-        return False
+    required_keys = set(range(1, len(boxes)))
+    provided_keys = set()
 
-    for i in range(len(boxes)):
-        if i == 0:
-            unlocked_keys += boxes[i]
-            opened_boxes[i] = True
+    for idx, box in enumerate(boxes):
+        current_required_keys = required_keys.copy()
 
-        if opened is False:
-            opened_boxes[i] = False
-            if i in unlocked_keys:
-                opened = True
-                unlocked_keys += boxes[i]
-                opened_boxes[i] = True
-                # unlocked_keys.remove(i)
+        if idx > 0:
+            current_required_keys.remove(idx)
 
-                for key, value in opened_boxes.items():
-                    if key in unlocked_keys and value is False:
-                        unlocked_keys += boxes[key]
-                        opened_boxes[key] = True
-                        # unlocked_keys.remove(key)
-        elif i != 0 and i in unlocked_keys:
-            unlocked_keys += boxes[i]
-            opened_boxes[i] = True
-            # unlocked_keys.remove(i)
-        elif i != 0 and i not in unlocked_keys:
-            opened = False
-            opened_boxes[i] = False
+        for key in box:
+            if key in current_required_keys:
+                provided_keys.add(key)
 
-    if False in opened_boxes.values():
-        return False
-
-    return True
+    return required_keys == provided_keys
