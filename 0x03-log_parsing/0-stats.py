@@ -4,19 +4,17 @@
 import sys
 
 
-def print_statistics(total_size, status_count):
-    """Prints input to stdout."""
+if __name__ == "__main__":
+    def print_statistics(total_size, status_count):
+        """Prints input to stdout."""
 
-    print("File size: {}".format(total_size))
+        print("File size: {}".format(total_size))
 
-    sorted_status_codes = sorted(status_count.items())
+        sorted_status_codes = sorted(status_count.items())
 
-    for code, count in sorted_status_codes:
-        print("{}: {}".format(code, count))
+        for code, count in sorted_status_codes:
+            print("{}: {}".format(code, count))
 
-
-def main():
-    """ Main """
     total_size = 0
     status_count = {200: 0, 301: 0, 400: 0, 401: 0,
                     403: 0, 404: 0, 405: 0, 500: 0}
@@ -60,7 +58,3 @@ def main():
     except KeyboardInterrupt:
         print_statistics(total_size, status_count)
         sys.exit(0)
-
-
-if __name__ == "__main__":
-    main()
