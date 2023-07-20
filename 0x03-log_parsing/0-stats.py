@@ -58,4 +58,5 @@ if __name__ == "__main__":
         pass
     except KeyboardInterrupt:
         print_statistics(total_size, status_count)
-        sys.exit(0)
+        raise
+    print_statistics(total_size, status_count)
