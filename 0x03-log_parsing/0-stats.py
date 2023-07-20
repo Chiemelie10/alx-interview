@@ -27,12 +27,19 @@ def main():
             line = line.strip()
             parts = line.split()
             line_counter += 1
+            print(parts)
 
             if len(parts) == 9:
-                status_code = parts[-2]
+                try:
+                    status_code = int(parts[-2])
+                except ValueError:
+                    line_counter -= 1
+                    continue
+
                 try:
                     file_size = int(parts[-1])
                 except ValueError:
+                    line_counter -= 1
                     continue
 
                 total_size += file_size
