@@ -18,20 +18,24 @@ def print_statistics(total_size, status_count):
 def main():
     """ Main """
     total_size = 0
-    status_count = {}
+    status_count = {200: 0, 301: 0, 400: 0, 401: 0,
+                    403: 0, 404: 0, 405: 0, 500: 0}
 
     try:
         line_counter = 0
 
         for line in sys.stdin:
             line = line.strip()
-            parts = line.split()
+            parts = line.split(" ")
             line_counter += 1
             print(parts)
 
             if len(parts) == 9:
                 try:
                     status_code = int(parts[-2])
+
+                    if status_code not in status_count:
+                        continue
                 except ValueError:
                     line_counter -= 1
                     continue
