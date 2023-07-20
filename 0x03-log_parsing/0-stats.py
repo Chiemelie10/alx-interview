@@ -28,7 +28,7 @@ def main():
             parts = line.split()
             line_counter += 1
 
-            if len(parts) >= 7:
+            if len(parts) == 9:
                 status_code = parts[-2]
                 try:
                     file_size = int(parts[-1])
