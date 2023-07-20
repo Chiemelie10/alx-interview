@@ -5,6 +5,10 @@ import sys
 
 
 if __name__ == "__main__":
+    total_size = 0
+    status_count = {200: 0, 301: 0, 400: 0, 401: 0,
+                    403: 0, 404: 0, 405: 0, 500: 0}
+
     def print_statistics(total_size, status_count):
         """Prints input to stdout."""
 
@@ -15,10 +19,6 @@ if __name__ == "__main__":
         for code, count in sorted_status_codes:
             print("{}: {}".format(code, count))
 
-    total_size = 0
-    status_count = {200: 0, 301: 0, 400: 0, 401: 0,
-                    403: 0, 404: 0, 405: 0, 500: 0}
-
     try:
         line_counter = 0
 
@@ -26,7 +26,6 @@ if __name__ == "__main__":
             line = line.strip()
             parts = line.split(" ")
             line_counter += 1
-            print(parts)
 
             if len(parts) == 9:
                 try:
@@ -55,6 +54,8 @@ if __name__ == "__main__":
 
             if line_counter % 10 == 0:
                 print_statistics(total_size, status_count)
+    except BaseException:
+        pass
     except KeyboardInterrupt:
         print_statistics(total_size, status_count)
         sys.exit(0)
