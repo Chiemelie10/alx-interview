@@ -41,6 +41,8 @@ def main():
                     status_count[status_code] += 1
                 else:
                     status_count[status_code] = 1
+            else:
+                line_counter -= 1
 
             if line_counter % 10 == 0:
                 print_statistics(total_size, status_count)
